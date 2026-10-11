@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Кэш моделей и датасетов
+.cache/
+*.ckpt
+*.zip
+*.npy
+
+# Gradio
+.gradio/
+gradio_cached_examples/
+flagged/
+app/sections/cached_data/
+
+# Переменные окружения (токены!)
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
