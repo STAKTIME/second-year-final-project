@@ -4,6 +4,10 @@ __pycache__/
 *.egg-info/
 .venv/
 venv/
+config.py
+eco_bot.db
+туду.txt
+db.py
 
 # Кэш моделей и датасетов
 .cache/
