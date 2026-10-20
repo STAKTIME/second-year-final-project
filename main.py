@@ -16,7 +16,7 @@ import db
 from classifier import CLASS_NAMES, DEFAULT_MODEL_PATH, GarbageClassifier
 from utils import RateLimiter, esc, markdown_to_html, split_message, validate_display_name
 
-__version__ = "2.4"
+__version__ = "1.6"
 
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s"
@@ -192,12 +192,30 @@ def redirect_if_other_action(message):
 def send_welcome(message):
     bot.clear_step_handler_by_chat_id(message.chat.id)
     ensure_user(message.from_user)
+    name = esc(message.from_user.first_name or "друг")
     bot.send_message(
         message.chat.id,
-        "👋 Привет! Я твой эко-помощник.\n\n"
-        "Отправь мне фото мусора, и я скажу, что это и куда его сдать. "
-        f"Подтверди, что я распознал верно, — получишь {POINTS_PER_PHOTO} эко-очков "
-        f"(не больше {DAILY_POINTS_LIMIT} в сутки).",
+        f"👋 <b>Привет, {name}! Я твой эко-помощник.</b>\n\n"
+        "Я помогаю правильно сортировать мусор, чтобы больше отходов попадало "
+        "на переработку, а не на свалку. 🌍\n\n"
+        "<b>Что я умею:</b>\n"
+        "📸 <b>Распознаю мусор по фото</b> — картон, стекло, металл, бумагу, пластик "
+        "и прочий мусор.\n"
+        "♻️ <b>Подскажу, куда его сдать</b> и как подготовить: снять крышку, "
+        "ополоснуть, сложить.\n"
+        "🤖 <b>Спрошу ИИ</b> — нейросеть Gemini даст совет по конкретному предмету "
+        "или ответит на твой вопрос, например «Куда сдать батарейки?».\n"
+        "📊 <b>Топ эко-активистов</b> — соревнуйся с другими по эко-очкам.\n"
+        "⚙️ <b>Профиль</b> — свои очки, имя в топе, можно скрыться из топа.\n\n"
+        "<b>Как получить эко-очки:</b>\n"
+        "1. Сфотографируй предмет крупно, целиком, лучше на однотонном фоне.\n"
+        "2. Отправь фото мне.\n"
+        f"3. Если я распознал верно, нажми «👍 Верно» — получишь <b>{POINTS_PER_PHOTO} очков</b>.\n"
+        "4. Если ошибся, нажми «👎 Неверно» и выбери правильный вариант — "
+        "так я научусь распознавать лучше.\n\n"
+        f"<i>Очки дают один раз за каждое фото, не больше {DAILY_POINTS_LIMIT} в сутки.</i>\n\n"
+        "Пользуйся кнопками меню внизу 👇 или просто отправь фото!",
+        parse_mode="HTML",
         reply_markup=get_main_menu(),
     )
 
