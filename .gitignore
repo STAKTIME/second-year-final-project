@@ -1,28 +1,21 @@
 # Python
 __pycache__/
 *.py[cod]
-*.egg-info/
 .venv/
 venv/
+
+# Секреты (токены!)
 config.py
-eco_bot.db
-туду.txt
-db.py
-
-# Кэш моделей и датасетов
-.cache/
-*.ckpt
-*.zip
-*.npy
-
-# Gradio
-.gradio/
-gradio_cached_examples/
-flagged/
-app/sections/cached_data/
-
-# Переменные окружения (токены!)
 .env
+
+# База данных бота
+eco_bot.db
+eco_bot.db-*
+
+# Веса модели (скачиваются автоматически при первом запуске)
+models/
+*.ckpt
+*.part
 
 # IDE
 .vscode/
@@ -30,3 +23,4 @@ app/sections/cached_data/
 
 # OS
 .DS_Store
+Thumbs.db
